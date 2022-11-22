@@ -50,7 +50,7 @@ func main() {
 		mu.Lock()
 		defer mu.Unlock()
 
-		if _, ok := codes[body.Email]; ok {
+		if storedCode, ok := codes[body.Email]; ok && storedCode == body.Code {
 			delete(codes, body.Email)
 			c.JSON(200, gin.H{
 				"message": "granted",
