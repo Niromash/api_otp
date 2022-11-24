@@ -15,6 +15,7 @@ func main() {
 	codes := make(map[string]string)
 	var mu sync.Mutex
 
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	config := cors.DefaultConfig()
 	config.AllowAllOrigins = true
@@ -64,6 +65,7 @@ func main() {
 		}
 	})
 
+	log.Println("Server started on port 8080")
 	log.Fatalln(router.Run(":8080"))
 }
 
